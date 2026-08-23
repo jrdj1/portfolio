@@ -10,6 +10,8 @@ export const defaultLocale: Locale = 'es';
 export const ui = {
   es: {
     'site.title': 'Jorge de Julián Vicedo — Portfolio',
+    'site.description':
+      'Portfolio de Jorge Rafael de Julián Vicedo, Ingeniero de Software Júnior: proyectos full-stack, sistemas distribuidos y habilidades técnicas.',
     'nav.about': 'Sobre mí',
     'nav.skills': 'Habilidades',
     'nav.projects': 'Proyectos',
@@ -37,6 +39,8 @@ export const ui = {
   },
   en: {
     'site.title': 'Jorge de Julián Vicedo — Portfolio',
+    'site.description':
+      'Portfolio of Jorge Rafael de Julián Vicedo, Junior Software Engineer: full-stack projects, distributed systems and technical skills.',
     'nav.about': 'About',
     'nav.skills': 'Skills',
     'nav.projects': 'Projects',

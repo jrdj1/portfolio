@@ -98,9 +98,26 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `grep` sobre `dist/index.html` confirma que las clases nuevas (`rounded-full`, etc.) se generan en el build de producción.
 - Sin captura visual disponible en esta sesión (ver nota en Fase 3); verificado por inspección de clases aplicadas y estructura del DOM.
 
-## Fase 5 — Interactividad y detalles avanzados
+## Fase 5 — Interactividad y detalles avanzados (2026-08-23)
 
-_Pendiente._
+**Qué se hizo**
+- **View Transitions**: `<ClientRouter />` de Astro en `Layout.astro` — navegación (p. ej. el cambio de idioma) con transición suave en vez de recarga brusca.
+- **Animaciones al hacer scroll**: `data-reveal` en el contenedor de cada sección (excepto el Hero, visible desde el primer render) + `IntersectionObserver` inline en `Layout.astro`. Respeta `prefers-reduced-motion` (si el usuario lo pide, todo se muestra sin animar) y se reengancha en `astro:page-load` para seguir funcionando tras una View Transition.
+- **SEO**: `<meta name="description">`, Open Graph (`og:title`, `og:description`, `og:image`, `og:locale`) y Twitter Card por idioma; `canonical` + `hreflang` (`es`/`en`/`x-default`); JSON-LD `Person` con nombre, rol, email y enlaces a GitHub/LinkedIn.
+- **Sitemap**: integración `@astrojs/sitemap` (`astro add sitemap`) — genera `sitemap-index.xml` con las dos rutas (`/` y `/en/`) automáticamente en cada build.
+- **`robots.txt`**: permite todo el rastreo y apunta al sitemap.
+- **Imagen Open Graph**: `public/og.png` (1200×630) generada con un script propio (`scripts/generate-og.mjs`, usa `sharp` para rasterizar un SVG con los mismos tokens de diseño del sitio) — no forma parte del build ni del runtime, se ejecuta manualmente cuando haga falta regenerarla.
+
+**Decisión: sin formulario de contacto**
+- Se valoró añadir un formulario (Formspree u otro servicio) pero requeriría una cuenta externa que el usuario aún no tiene configurada. En vez de dejar un formulario a medias o roto, se mantiene el contacto por `mailto:` + descarga directa del CV (ya implementado en la Fase 2), que es 100% funcional sin dependencias de terceros. **TODO** si el usuario quiere un formulario más adelante: crear cuenta en Formspree (u otro), pasar el endpoint, y se añade con validación cliente.
+
+**Por qué**
+- View Transitions + scroll reveal usando solo APIs nativas del navegador (sin librerías de animación) — coherente con el enfoque "progresivo" de ir añadiendo capas sin inflar el bundle.
+- JSON-LD `Person` en vez de `WebSite`/`ProfilePage`: es el tipo que mejor describe a un portfolio personal para los rich results de buscadores.
+
+**Verificación**
+- `npx astro check` (0 errores/avisos tras añadir `is:inline` al script del JSON-LD) y `npm run build` (genera `sitemap-index.xml`/`sitemap-0.xml` con ambas URLs).
+- Inspección en el navegador: meta description, OG tags, canonical/hreflang y JSON-LD correctos; tras hacer scroll, `6/6` secciones quedan marcadas `is-visible`.
 
 ## Fase 6 — Rendimiento, accesibilidad y despliegue
 
