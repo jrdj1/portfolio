@@ -10,12 +10,30 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<section id="contact" aria-labelledby="contact-heading">
-  <h2 id="contact-heading">{t('contact.heading')}</h2>
-  <p>{t('contact.body')}</p>
-  <p><a href="mailto:jorgejulianvicedo03@gmail.com">jorgejulianvicedo03@gmail.com</a></p>
-  <p>
-    <a href="/cv/cv-es.pdf" download>{t('contact.cvEs')}</a>
-    <a href="/cv/cv-en.pdf" download>{t('contact.cvEn')}</a>
-  </p>
+<section id="contact" aria-labelledby="contact-heading" class="scroll-mt-24 border-t border-[var(--color-border)] px-6 py-16">
+  <div class="mx-auto max-w-4xl">
+    <h2 id="contact-heading" class="text-2xl font-bold sm:text-3xl">{t('contact.heading')}</h2>
+    <p class="mt-4 max-w-2xl text-[var(--color-text-muted)]">{t('contact.body')}</p>
+    <p class="mt-3">
+      <a href="mailto:jorgejulianvicedo03@gmail.com" class="font-mono text-[var(--color-accent)] hover:underline">
+        jorgejulianvicedo03@gmail.com
+      </a>
+    </p>
+    <p class="mt-6 flex flex-wrap gap-4">
+      <a
+        href="/cv/cv-es.pdf"
+        download
+        class="rounded border border-[var(--color-border)] px-4 py-2 text-sm font-medium transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+      >
+        {t('contact.cvEs')}
+      </a>
+      <a
+        href="/cv/cv-en.pdf"
+        download
+        class="rounded border border-[var(--color-border)] px-4 py-2 text-sm font-medium transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+      >
+        {t('contact.cvEn')}
+      </a>
+    </p>
+  </div>
 </section>

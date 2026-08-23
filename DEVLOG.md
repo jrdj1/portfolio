@@ -61,9 +61,24 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `npm run build`: OK.
 - Revisión visual ES/EN en el servidor de desarrollo; `curl` confirma que `/cv/cv-es.pdf` y `/cv/cv-en.pdf` responden `200`.
 
-## Fase 3 — Estilos base con Tailwind
+## Fase 3 — Estilos base con Tailwind (2026-08-23)
 
-_Pendiente._
+**Qué se hizo**
+- Tokens de diseño en `src/styles/global.css` vía `@theme` (Tailwind v4, sin `tailwind.config.mjs`): paleta oscura técnica (`--color-bg`, `--color-surface`, `--color-border`, `--color-text`, `--color-text-muted`, `--color-accent` cian) y tipografías autohospedadas con `@fontsource` (Inter Variable para texto, JetBrains Mono para etiquetas/eyebrows).
+- `global.css` importado por fin en `Layout.astro` — a partir de aquí el sitio usa Tailwind.
+- `Header` con nav sticky + blur, enlace "Skip to content" para accesibilidad de teclado, selector de idioma como botón con borde.
+- Contenedor y espaciado consistentes en todas las secciones (`max-w-4xl`, `scroll-mt-24` para que el scroll a anclas no quede tapado por el header sticky, separadores `border-t`).
+- Hero con jerarquía tipográfica y botones CTA (uno sólido con el acento, uno con borde).
+- Tarjetas simples para `Projects` (borde + fondo `surface`) y borde lateral tipo "timeline" para `Experience`/`Education` — tratamiento mínimo, el pulido de componentes llega en la Fase 4.
+
+**Por qué**
+- Sin toggle claro/oscuro: el usuario eligió explícitamente un único tema oscuro técnico, así que no se añade la complejidad de un color-scheme conmutable.
+- Elección de acento cian (`#22d3ee`) sobre fondo casi negro: contraste alto (AA) sobre `--color-bg`, encaja con la temática "developer/espacio" de proyectos como Meteor Madness sin depender de una marca personal predefinida.
+- Tailwind v4 vía `@theme` en CSS (no `tailwind.config.mjs`): es el enfoque que integra `astro add tailwind` actualmente y evita mantener dos sistemas de configuración.
+
+**Verificación**
+- `npx astro check` y `npm run build`: sin errores.
+- Sin acceso a captura visual del Browser pane en esta sesión; verificado por inspección programática (`getComputedStyle` sobre `body`/`h1`/CTA) que el tema, la tipografía y el color de acento se aplican, y que fuentes/CSS cargan con `200 OK` sin errores de consola.
 
 ## Fase 4 — Componentes pulidos
 

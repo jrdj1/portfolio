@@ -12,15 +12,17 @@ const t = useTranslations(lang);
 const { experience } = profile[lang];
 ---
 
-<section id="experience" aria-labelledby="experience-heading">
-  <h2 id="experience-heading">{t('experience.heading')}</h2>
-  <ol>
-    {experience.map((item) => (
-      <li>
-        <h3>{item.title}</h3>
-        <p>{item.org}{item.period && ` · ${item.period}`}</p>
-        <p>{item.description}</p>
-      </li>
-    ))}
-  </ol>
+<section id="experience" aria-labelledby="experience-heading" class="scroll-mt-24 border-t border-[var(--color-border)] px-6 py-16">
+  <div class="mx-auto max-w-4xl">
+    <h2 id="experience-heading" class="text-2xl font-bold sm:text-3xl">{t('experience.heading')}</h2>
+    <ol class="mt-6 space-y-6">
+      {experience.map((item) => (
+        <li class="border-l-2 border-[var(--color-border)] pl-4">
+          <h3 class="font-semibold">{item.title}</h3>
+          <p class="font-mono text-sm text-[var(--color-accent)]">{item.org}{item.period && ` · ${item.period}`}</p>
+          <p class="mt-1 text-sm text-[var(--color-text-muted)]">{item.description}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
 </section>

@@ -11,11 +11,13 @@ const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
-<footer>
-  <p>© {year} Jorge Rafael de Julián Vicedo. {t('footer.rights')}</p>
-  <ul>
-    <li><a href="https://github.com/jrdj1" rel="noopener noreferrer" target="_blank">GitHub</a></li>
-    <li><a href="https://linkedin.com/in/jorge-julian-vicedo" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
-    <li><a href="mailto:jorgejulianvicedo03@gmail.com">Email</a></li>
-  </ul>
+<footer class="border-t border-[var(--color-border)]">
+  <div class="mx-auto flex max-w-4xl flex-col gap-3 px-6 py-8 text-sm text-[var(--color-text-muted)] sm:flex-row sm:items-center sm:justify-between">
+    <p>© {year} Jorge Rafael de Julián Vicedo. {t('footer.rights')}</p>
+    <ul class="flex gap-4 font-mono">
+      <li><a class="transition-colors hover:text-[var(--color-accent)]" href="https://github.com/jrdj1" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+      <li><a class="transition-colors hover:text-[var(--color-accent)]" href="https://linkedin.com/in/jorge-julian-vicedo" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
+      <li><a class="transition-colors hover:text-[var(--color-accent)]" href="mailto:jorgejulianvicedo03@gmail.com">Email</a></li>
+    </ul>
+  </div>
 </footer>

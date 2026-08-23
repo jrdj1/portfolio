@@ -12,15 +12,17 @@ const t = useTranslations(lang);
 const { education } = profile[lang];
 ---
 
-<section id="education" aria-labelledby="education-heading">
-  <h2 id="education-heading">{t('education.heading')}</h2>
-  <ol>
-    {education.map((item) => (
-      <li>
-        <h3>{item.institution} — {item.degree}</h3>
-        <p>{item.detail}</p>
-        <p>{item.period}</p>
-      </li>
-    ))}
-  </ol>
+<section id="education" aria-labelledby="education-heading" class="scroll-mt-24 border-t border-[var(--color-border)] px-6 py-16">
+  <div class="mx-auto max-w-4xl">
+    <h2 id="education-heading" class="text-2xl font-bold sm:text-3xl">{t('education.heading')}</h2>
+    <ol class="mt-6 space-y-6">
+      {education.map((item) => (
+        <li class="border-l-2 border-[var(--color-border)] pl-4">
+          <h3 class="font-semibold">{item.institution} — {item.degree}</h3>
+          <p class="font-mono text-sm text-[var(--color-accent)]">{item.detail}</p>
+          <p class="mt-1 text-sm text-[var(--color-text-muted)]">{item.period}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
 </section>
