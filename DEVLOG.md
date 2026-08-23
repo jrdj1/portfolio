@@ -119,6 +119,23 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `npx astro check` (0 errores/avisos tras añadir `is:inline` al script del JSON-LD) y `npm run build` (genera `sitemap-index.xml`/`sitemap-0.xml` con ambas URLs).
 - Inspección en el navegador: meta description, OG tags, canonical/hreflang y JSON-LD correctos; tras hacer scroll, `6/6` secciones quedan marcadas `is-visible`.
 
-## Fase 6 — Rendimiento, accesibilidad y despliegue
+## Fase 6 — Rendimiento, accesibilidad y despliegue (2026-08-23)
 
-_Pendiente._
+**Qué se hizo**
+- **Accesibilidad**: verificado programáticamente el contraste de la paleta (fórmula WCAG 2.1) — texto principal 16.59:1, texto secundario 6.55:1 (fondo) / 6.07:1 (tarjetas), acento cian 11.14:1; todos superan el mínimo AA (4.5:1) con holgura. Jerarquía de encabezados (`h1` único, `h2` por sección, `h3` para subgrupos) y landmarks (`header`/`nav`/`main`/`footer`/`section` etiquetadas) verificados en el DOM renderizado.
+- **Rendimiento — fuentes**: `global.css` pasó de importar los paquetes completos de `@fontsource` (que incluyen cirílico/griego/vietnamita) a solo los subconjuntos `latin`/`latin-ext` necesarios para es/en. Los ficheros de fuente en `dist/_astro` bajaron de 29 a 12 y el peso total del build de ~4.9 MB a ~3.0 MB (el resto son los dos PDF de CV, que son el propio contenido a descargar).
+- **Despliegue**: `astro.config.mjs` documenta con un comentario que `site` es un placeholder hasta el primer deploy; el README explica el paso de importar el repo en Vercel (preset "Astro", sin configuración adicional) y añade el paso posterior de actualizar `site` + `robots.txt` con la URL real una vez desplegado.
+- Script `npm run generate:og` añadido para poder regenerar `public/og.png` sin recordar la ruta del script.
+
+**Por qué**
+- Los subconjuntos de idioma en las fuentes no cambian el rendimiento percibido por sí solos (el navegador solo pedía ya el subconjunto que necesitaba gracias a `unicode-range`), pero sí el peso del repositorio/build y el tiempo de instalación/deploy — limpieza razonable antes de dar el proyecto por "terminado".
+- No se ejecuta una auditoría Lighthouse real en esta sesión (no hay Chrome/Lighthouse CLI disponible en el entorno); en su lugar se verifican de forma programática los aspectos que Lighthouse mediría (contraste, tamaño de assets, fuentes con `font-display: swap`, ausencia de JS bloqueante) y se deja anotado como posible mejora futura ejecutar Lighthouse una vez desplegado en Vercel.
+
+**Verificación**
+- `npx astro check` y `npm run build`: sin errores.
+- Contraste de color calculado con la fórmula de luminancia relativa de WCAG 2.1 (ver detalle arriba).
+- Confirmado en el navegador que las fuentes cargadas (`document.fonts`) corresponden a los subconjuntos `latin`, y que caracteres acentuados (í, ñ) se renderizan correctamente con ellos.
+
+## Estado del proyecto
+
+Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). Pendiente de acción del usuario: importar el repositorio en Vercel y, tras el primer deploy, actualizar la URL real en `astro.config.mjs` y `public/robots.txt` (ver README). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.

@@ -51,6 +51,7 @@ npm run dev       # http://localhost:4321
 | `npm run build`       | Compila el sitio de producción en `./dist/`           |
 | `npm run preview`      | Sirve localmente el build de producción                |
 | `npm run astro check` | Comprueba tipos y errores de Astro/TypeScript          |
+| `npm run generate:og` | Regenera `public/og.png` (imagen de Open Graph)         |
 
 ## Despliegue
 
@@ -60,6 +61,9 @@ El sitio es 100% estático y compatible con el preset "Astro" de Vercel sin nece
 2. Framework preset: **Astro** (autodetectado).
 3. Build command / output directory: los que detecta Vercel por defecto (`npm run build` / `dist`).
 4. Deploy.
+5. **Tras el primer deploy**: actualizar la URL real del sitio en dos sitios y volver a hacer commit/push (Vercel redepliega solo):
+   - `site` en [`astro.config.mjs`](./astro.config.mjs) (usada para `canonical`, Open Graph, JSON-LD y el sitemap).
+   - La línea `Sitemap:` en [`public/robots.txt`](./public/robots.txt).
 
 ## Licencia
 
