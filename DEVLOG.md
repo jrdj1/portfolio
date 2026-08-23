@@ -80,9 +80,23 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `npx astro check` y `npm run build`: sin errores.
 - Sin acceso a captura visual del Browser pane en esta sesión; verificado por inspección programática (`getComputedStyle` sobre `body`/`h1`/CTA) que el tema, la tipografía y el color de acento se aplican, y que fuentes/CSS cargan con `200 OK` sin errores de consola.
 
-## Fase 4 — Componentes pulidos
+## Fase 4 — Componentes pulidos (2026-08-23)
 
-_Pendiente._
+**Qué se hizo**
+- Hero: fondo decorativo (glow radial difuminado en el color de acento, puramente CSS, `aria-hidden`) y micro-interacción en el CTA principal (`hover:-translate-y-0.5`).
+- Skills / Idiomas: de texto plano a píldoras (`rounded-full`, borde + fondo `surface`), igual que las etiquetas de tecnología en las tarjetas de proyecto.
+- Proyectos: hover con cambio de color en el borde y en el título (`group-hover`), tags de tecnología como píldoras más pequeñas.
+- Experiencia / Educación: de un simple borde izquierdo a una timeline real con marcador circular (`::before`-style span posicionado) por cada entrada.
+
+**Por qué**
+- Las píldoras para skills/idiomas/tecnologías dan escaneabilidad visual inmediata (patrón muy reconocible en portfolios técnicos) sin añadir JS.
+- El glow del Hero es puramente decorativo y `aria-hidden="true"`: no interfiere con lectores de pantalla ni añade peso (sin imágenes, solo `blur` + `opacity` de Tailwind).
+- Se mantiene el nav del Header con `flex-wrap` en vez de un menú hamburguesa con JS: a este tamaño de sitio (6 enlaces) el wrap es igual de usable en móvil y evita añadir un componente interactivo/isla solo para eso; se revisará en la Fase 6 si la auditoría de accesibilidad/UX sugiere lo contrario.
+
+**Verificación**
+- `npx astro check` y `npm run build`: sin errores.
+- `grep` sobre `dist/index.html` confirma que las clases nuevas (`rounded-full`, etc.) se generan en el build de producción.
+- Sin captura visual disponible en esta sesión (ver nota en Fase 3); verificado por inspección de clases aplicadas y estructura del DOM.
 
 ## Fase 5 — Interactividad y detalles avanzados
 
