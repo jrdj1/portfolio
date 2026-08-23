@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/utils';
+import { profile } from '../../content/profile';
 
 interface Props {
   lang: Locale;
@@ -8,9 +9,17 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const { aboutBody, languages } = profile[lang];
 ---
 
 <section id="about" aria-labelledby="about-heading">
   <h2 id="about-heading">{t('about.heading')}</h2>
-  <p>{t('about.body')}</p>
+  <p>{aboutBody}</p>
+
+  <h3>{t('about.languagesHeading')}</h3>
+  <ul>
+    {languages.map((language) => (
+      <li>{language.name} ({language.level})</li>
+    ))}
+  </ul>
 </section>

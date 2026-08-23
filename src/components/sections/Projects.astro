@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/utils';
+import { profile } from '../../content/profile';
 
 interface Props {
   lang: Locale;
@@ -8,9 +9,30 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const { projects } = profile[lang];
 ---
 
 <section id="projects" aria-labelledby="projects-heading">
   <h2 id="projects-heading">{t('projects.heading')}</h2>
-  <p>{t('projects.placeholder')}</p>
+  <ul>
+    {projects.map((project) => (
+      <li>
+        <article aria-labelledby={`project-${project.name.replace(/\s+/g, '-').toLowerCase()}`}>
+          <h3 id={`project-${project.name.replace(/\s+/g, '-').toLowerCase()}`}>{project.name}</h3>
+          {project.badge && <p>{project.badge}</p>}
+          <p>{project.description}</p>
+          <ul>
+            {project.tech.map((tech) => (
+              <li>{tech}</li>
+            ))}
+          </ul>
+          {project.url ? (
+            <p><a href={project.url} rel="noopener noreferrer" target="_blank">{t('projects.viewRepo')}</a></p>
+          ) : (
+            <p>{t('projects.noRepo')}</p>
+          )}
+        </article>
+      </li>
+    ))}
+  </ul>
 </section>

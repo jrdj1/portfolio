@@ -39,9 +39,27 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `npm run build`: genera `/index.html` y `/en/index.html`.
 - Revisión visual con el servidor de desarrollo: navegación por anclas y selector de idioma (`/` ↔ `/en/`) funcionando en ambas direcciones.
 
-## Fase 2 — Contenido real
+## Fase 2 — Contenido real (2026-08-23)
 
-_Pendiente._
+**Qué se hizo**
+- `src/content/profile.ts`: contenido tipado y bilingüe (ES/EN) extraído del CV — perfil, habilidades por categoría, proyectos, experiencia, educación e idiomas hablados. Los componentes de sección ya no usan texto de relleno.
+- Nueva subsección "Idiomas"/"Languages" dentro de `About`, con los idiomas hablados del CV (no confundir con el selector de idioma del sitio).
+- Tarjetas de proyecto con badge de estado (p. ej. "En desarrollo", "NASA Space Apps Challenge 2025") y enlace al repositorio cuando existe.
+- PDFs del CV (ES/EN) copiados a `public/cv/` y enlazados desde la sección de contacto.
+
+**Enlaces de proyectos — decisiones tomadas con el usuario**
+- **Meteor Madness** → [`jrdj1/NASA-2025-METEOR-MADNESS`](https://github.com/jrdj1/NASA-2025-METEOR-MADNESS).
+- **EasyCab2** → [`jrdj1/EasyCab`](https://github.com/jrdj1/EasyCab) (confirmado por el usuario).
+- **SmartFest Data** y **BookHeaven**: no tienen repositorio público todavía; la tarjeta lo indica ("Repositorio no disponible públicamente todavía" / "Repository not publicly available yet") en vez de enlazar a una URL inventada. **TODO:** añadir el enlace en cuanto exista.
+
+**Por qué**
+- Contenido tipado (`ProfileContent`) en vez de más claves sueltas en `ui.ts`: los datos de CV son estructurados (listas, grupos, items con metadatos) y modelarlos como tal evita duplicar lógica de renderizado entre ES/EN.
+- No se publica el teléfono del CV (ver decisión en el plan de proyecto) — contacto vía email, descarga de CV, GitHub y LinkedIn (estos dos últimos ya en el `Footer` desde la Fase 1).
+
+**Verificación**
+- `npx astro check`: 0 errores.
+- `npm run build`: OK.
+- Revisión visual ES/EN en el servidor de desarrollo; `curl` confirma que `/cv/cv-es.pdf` y `/cv/cv-en.pdf` responden `200`.
 
 ## Fase 3 — Estilos base con Tailwind
 

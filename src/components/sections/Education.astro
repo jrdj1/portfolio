@@ -1,6 +1,7 @@
 ---
 import type { Locale } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/utils';
+import { profile } from '../../content/profile';
 
 interface Props {
   lang: Locale;
@@ -8,9 +9,18 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+const { education } = profile[lang];
 ---
 
 <section id="education" aria-labelledby="education-heading">
   <h2 id="education-heading">{t('education.heading')}</h2>
-  <p>{t('education.placeholder')}</p>
+  <ol>
+    {education.map((item) => (
+      <li>
+        <h3>{item.institution} — {item.degree}</h3>
+        <p>{item.detail}</p>
+        <p>{item.period}</p>
+      </li>
+    ))}
+  </ol>
 </section>
