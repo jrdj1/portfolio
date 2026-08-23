@@ -1,0 +1,16 @@
+---
+import type { Locale } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="about" aria-labelledby="about-heading">
+  <h2 id="about-heading">{t('about.heading')}</h2>
+  <p>{t('about.body')}</p>
+</section>

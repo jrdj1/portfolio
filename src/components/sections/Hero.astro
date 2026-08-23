@@ -1,0 +1,22 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import type { Locale } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="hero" aria-label={t('hero.eyebrow')}>
+  <p>{t('hero.eyebrow')}</p>
+  <h1>{t('hero.name')}</h1>
+  <p>{t('hero.tagline')}</p>
+  <p>
+    <a href={`${getRelativeLocaleUrl(lang, '/')}#projects`}>{t('hero.cta.projects')}</a>
+    <a href={`${getRelativeLocaleUrl(lang, '/')}#contact`}>{t('hero.cta.contact')}</a>
+  </p>
+</section>

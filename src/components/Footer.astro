@@ -1,0 +1,21 @@
+---
+import type { Locale } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <p>© {year} Jorge Rafael de Julián Vicedo. {t('footer.rights')}</p>
+  <ul>
+    <li><a href="https://github.com/jrdj1" rel="noopener noreferrer" target="_blank">GitHub</a></li>
+    <li><a href="https://linkedin.com/in/jorge-julian-vicedo" rel="noopener noreferrer" target="_blank">LinkedIn</a></li>
+    <li><a href="mailto:jorgejulianvicedo03@gmail.com">Email</a></li>
+  </ul>
+</footer>
