@@ -9,9 +9,9 @@ export const defaultLocale: Locale = 'es';
  */
 export const ui = {
   es: {
-    'site.title': 'Jorge de Julián Vicedo — Portfolio',
+    'site.title': 'Jorge Julián Vicedo — Portfolio',
     'site.description':
-      'Portfolio de Jorge Rafael de Julián Vicedo, Ingeniero de Software Júnior: proyectos full-stack, sistemas distribuidos y habilidades técnicas.',
+      'Portfolio de Jorge Julián Vicedo, Ingeniero de Software Júnior: proyectos full-stack, sistemas distribuidos y habilidades técnicas.',
     'nav.about': 'Sobre mí',
     'nav.skills': 'Habilidades',
     'nav.projects': 'Proyectos',
@@ -21,7 +21,7 @@ export const ui = {
     'nav.langSwitch': 'English',
     'nav.themeToggle': 'Cambiar entre tema claro y oscuro',
     'hero.eyebrow': 'Ingeniero de Software Júnior',
-    'hero.name': 'Jorge Rafael de Julián Vicedo',
+    'hero.name': 'Jorge Julián Vicedo',
     'hero.cta.projects': 'Ver proyectos',
     'hero.cta.contact': 'Contactar',
     'about.heading': 'Sobre mí',
@@ -39,9 +39,9 @@ export const ui = {
     'footer.rights': 'Todos los derechos reservados.',
   },
   en: {
-    'site.title': 'Jorge de Julián Vicedo — Portfolio',
+    'site.title': 'Jorge Julián Vicedo — Portfolio',
     'site.description':
-      'Portfolio of Jorge Rafael de Julián Vicedo, Junior Software Engineer: full-stack projects, distributed systems and technical skills.',
+      'Portfolio of Jorge Julián Vicedo, Junior Software Engineer: full-stack projects, distributed systems and technical skills.',
     'nav.about': 'About',
     'nav.skills': 'Skills',
     'nav.projects': 'Projects',
@@ -51,7 +51,7 @@ export const ui = {
     'nav.langSwitch': 'Español',
     'nav.themeToggle': 'Toggle light and dark theme',
     'hero.eyebrow': 'Junior Software Engineer',
-    'hero.name': 'Jorge Rafael de Julián Vicedo',
+    'hero.name': 'Jorge Julián Vicedo',
     'hero.cta.projects': 'View projects',
     'hero.cta.contact': 'Get in touch',
     'about.heading': 'About',

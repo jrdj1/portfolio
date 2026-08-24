@@ -30,10 +30,10 @@ const svg = `
   </text>
 
   <text x="90" y="300" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="700" fill="#e6e9f2">
-    Jorge Rafael
+    Jorge Julián
   </text>
   <text x="90" y="375" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="700" fill="#e6e9f2">
-    de Julián Vicedo
+    Vicedo
   </text>
 
   <text x="90" y="440" font-family="Inter, Arial, sans-serif" font-size="28" fill="#8b93a7">

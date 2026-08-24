@@ -1,6 +1,6 @@
-# Portfolio — Jorge Rafael de Julián Vicedo
+# Portfolio — Jorge Julián Vicedo
 
-Portfolio web personal de [Jorge Rafael de Julián Vicedo](https://github.com/jrdj1), estudiante de Ingeniería Informática (Universidad de Alicante) e Ingeniero de Software Júnior. Construido con [Astro](https://astro.build) y [Tailwind CSS](https://tailwindcss.com), en español e inglés.
+Portfolio web personal de [Jorge Julián Vicedo](https://github.com/jrdj1), estudiante de Ingeniería Informática (Universidad de Alicante) e Ingeniero de Software Júnior. Construido con [Astro](https://astro.build) y [Tailwind CSS](https://tailwindcss.com), en español e inglés.
 
 🔗 Demo en vivo: [jorgejulianvicedo.vercel.app](https://jorgejulianvicedo.vercel.app)
 
