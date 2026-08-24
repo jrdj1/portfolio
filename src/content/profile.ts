@@ -33,7 +33,6 @@ export interface LanguageItem {
 }
 
 export interface ProfileContent {
-  heroTagline: string;
   location: string;
   aboutBody: string;
   skills: SkillGroup[];
@@ -45,11 +44,9 @@ export interface ProfileContent {
 
 export const profile: Record<Locale, ProfileContent> = {
   es: {
-    heroTagline:
-      'Estudiante de Ingeniería Informática (UA) construyendo aplicaciones full-stack y sistemas distribuidos.',
     location: 'Mutxamel, Alicante',
     aboutBody:
-      'Estudiante de último curso de Ingeniería Informática (Universidad de Alicante), especializado en Sistemas de Información y orientado al desarrollo de software backend/frontend. Experiencia práctica construyendo aplicaciones full-stack y sistemas distribuidos en proyectos reales, con dominio de metodologías ágiles. Motivado por incorporarme a un equipo de desarrollo donde aportar valor desde el primer día y seguir creciendo como ingeniero de software.',
+      'Me interesa el software como proceso: plantear una pregunta técnica concreta, probar, romper cosas y documentar lo que queda. La mayoría de los proyectos de aquí nacen así, no de intentar rellenar un currículum. Estudio Ingeniería Informática (Sistemas de Información) en la Universidad de Alicante.',
     skills: [
       { category: 'Lenguajes', items: ['Java', 'Python', 'C/C++', 'C#', 'JavaScript / TypeScript', 'SQL'] },
       { category: 'Backend & Frameworks', items: ['Node.js', 'FastAPI', 'Laravel', 'React', 'Astro'] },
@@ -120,10 +117,9 @@ export const profile: Record<Locale, ProfileContent> = {
     ],
   },
   en: {
-    heroTagline: 'Computer Engineering student (UA) building full-stack applications and distributed systems.',
     location: 'Mutxamel, Alicante (Spain)',
     aboutBody:
-      'Final-year Computer Engineering student (University of Alicante) specializing in Information Systems, focused on backend/frontend software development. Hands-on experience building full-stack applications and distributed systems in real projects, with a solid command of agile methodologies. Motivated to join a development team where I can add value from day one and keep growing as a software engineer.',
+      "I think of software as a process: pose a concrete technical question, try things, break things, and write down what's left. Most of what's here started that way, not from trying to pad a résumé. I study Computer Engineering (Information Systems) at the University of Alicante.",
     skills: [
       { category: 'Languages', items: ['Java', 'Python', 'C/C++', 'C#', 'JavaScript / TypeScript', 'SQL'] },
       { category: 'Backend & Frameworks', items: ['Node.js', 'FastAPI', 'Laravel', 'React', 'Astro'] },

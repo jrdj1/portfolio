@@ -10,7 +10,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const { heroTagline, location } = profile[lang];
+const { location } = profile[lang];
 ---
 
 <section id="hero" aria-label={t('hero.eyebrow')} class="relative scroll-mt-24 overflow-hidden px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
@@ -21,9 +21,11 @@ const { heroTagline, location } = profile[lang];
   </div>
 
   <div class="relative mx-auto max-w-4xl">
-    <p class="font-mono text-sm text-[var(--color-accent)]">{t('hero.eyebrow')} · {location}</p>
-    <h1 class="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">{t('hero.name')}</h1>
-    <p class="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">{heroTagline}</p>
+    <p class="font-mono text-sm text-[var(--color-accent)]">{t('hero.eyebrow')}</p>
+    <h1 class="mt-3 max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl">{t('hero.headline')}</h1>
+    <p class="mt-4 font-mono text-sm text-[var(--color-text-muted)]">
+      {t('hero.name')} · {t('hero.role')} · {location}
+    </p>
     <p class="mt-8 flex flex-wrap gap-4">
       <a
         href={`${getRelativeLocaleUrl(lang, '/')}#projects`}

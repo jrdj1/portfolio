@@ -136,6 +136,25 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - Contraste de color calculado con la fórmula de luminancia relativa de WCAG 2.1 (ver detalle arriba).
 - Confirmado en el navegador que las fuentes cargadas (`document.fonts`) corresponden a los subconjuntos `latin`, y que caracteres acentuados (í, ñ) se renderizan correctamente con ellos.
 
+## Reenfoque: proyectos primero + blog (2026-08-24)
+
+**Qué se hizo**
+- **Hero rediseñado**: ya no lidera con "rol · nombre" como una tarjeta de CV. Ahora el `h1` es una declaración de lo que se hace ("Construyo software y documento el camino hasta llegar ahí" / "I build software, and document the way there"); nombre, rol y ubicación pasan a una línea secundaria en mono debajo.
+- **Orden de secciones cambiado**: Hero → **Proyectos** → Habilidades → Experiencia → Educación → **Enfoque** (antes "Sobre mí") → Contacto. Los proyectos pasan a ser lo primero que se ve tras el hero, no lo último antes de la ficha técnica.
+- **"Sobre mí" → "Enfoque"**: baja de posición y se recorta de un párrafo estilo perfil profesional de CV a una nota breve sobre cómo se trabaja ("plantear una pregunta técnica, probar, romper cosas, documentar"), explícitamente alejada de "rellenar un currículum".
+- **Proyectos** gana una frase de introducción que enmarca la sección como una selección con proyectos terminados y otros en marcha, en vez de una lista de logros.
+- **Blog**: entrada nueva en la navegación (`/blog`, `/en/blog`) con página placeholder ("todavía no hay entradas...") — deja hueco en la IA para cuando se implemente el sistema de posts, sin construirlo todavía.
+- `Layout.astro` generaliza `canonical`/`hreflang` con un prop `path` (antes solo contemplaba la home) para que funcionen en cualquier ruta, blog incluido.
+
+**Por qué**
+- El usuario pidió reenfocar el portfolio como "una experiencia, un proyecto científico" en vez de una página orientada a la autopromoción — reordenar para que los proyectos (el trabajo real) precedan al perfil personal, y recortar el "Sobre mí" a algo más honesto/breve, es la forma concreta de aplicar eso sin perder la sección de perfil profesional que sigue siendo necesaria.
+- El placeholder de blog se añade ahora (solo la ruta + página vacía) para dejar sitio en la IA/nav sin comprometerse todavía a construir un sistema de contenido — se implementará más adelante.
+
+**Verificación**
+- `npx astro check` y `npm run build`: sin errores, 4 páginas generadas (`/`, `/en/`, `/blog/`, `/en/blog/`).
+- Sitemap y `canonical`/`hreflang` verificados para la nueva ruta `/blog` en ambos idiomas.
+- Revisado en el navegador: nuevo orden de secciones, nav con "Blog" y "Enfoque", página de blog en ES/EN, ancla `#about` con el nuevo título "Enfoque".
+
 ## Estado del proyecto
 
 Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.

@@ -1,20 +1,22 @@
 ---
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { Locale } from '../i18n/ui';
 
 interface Props {
   lang: Locale;
   title: string;
   description: string;
+  /** Ruta sin prefijo de idioma, p.ej. "/" o "/blog" — usada para canonical/hreflang. */
+  path?: string;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, title, description, path = '/' } = Astro.props;
 
-const canonicalPath = lang === 'en' ? '/en/' : '/';
-const canonicalUrl = new URL(canonicalPath, Astro.site);
-const esUrl = new URL('/', Astro.site);
-const enUrl = new URL('/en/', Astro.site);
+const esUrl = new URL(getRelativeLocaleUrl('es', path), Astro.site);
+const enUrl = new URL(getRelativeLocaleUrl('en', path), Astro.site);
+const canonicalUrl = lang === 'en' ? enUrl : esUrl;
 const ogImageUrl = new URL('/og.png', Astro.site);
 
 const personLd = {
