@@ -1,0 +1,18 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Projects from '../../../components/sections/Projects.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} title={`${t('projects.heading')} — ${t('site.title')}`} description={t('projects.intro')} route="projects">
+  <Header lang={lang} route="projects" />
+  <main id="main">
+    <Projects lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

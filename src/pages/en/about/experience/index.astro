@@ -1,0 +1,29 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Header from '../../../../components/Header.astro';
+import Footer from '../../../../components/Footer.astro';
+import Experience from '../../../../components/sections/Experience.astro';
+import { useTranslations } from '../../../../i18n/utils';
+import { routePath } from '../../../../i18n/routes';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} title={`${t('experience.heading')} — ${t('site.title')}`} description={t('about.experience.desc')} route="aboutExperience">
+  <Header lang={lang} route="aboutExperience" />
+  <main id="main">
+    <Experience lang={lang} />
+    <div class="px-6 pb-16">
+      <div class="mx-auto max-w-4xl">
+        <a
+          href={routePath(lang, 'about')}
+          class="inline-block rounded border border-[var(--color-border)] px-4 py-2 text-sm font-medium transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+        >
+          {t('about.back')}
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Layout>

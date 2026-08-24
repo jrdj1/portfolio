@@ -1,25 +1,23 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { Locale } from '../i18n/ui';
 import { useTranslations } from '../i18n/utils';
+import { routePath, type RouteKey } from '../i18n/routes';
 
 interface Props {
   lang: Locale;
+  /** Ruta actual, para que el selector de idioma lleve a la pagina equivalente. */
+  route?: RouteKey;
 }
 
-const { lang } = Astro.props;
+const { lang, route = 'home' } = Astro.props;
 const t = useTranslations(lang);
 const otherLang: Locale = lang === 'es' ? 'en' : 'es';
 
-const home = getRelativeLocaleUrl(lang, '/');
 const navItems: Array<{ label: string; href: string }> = [
-  { label: t('nav.projects'), href: `${home}#projects` },
-  { label: t('nav.blog'), href: getRelativeLocaleUrl(lang, '/blog') },
-  { label: t('nav.skills'), href: `${home}#skills` },
-  { label: t('nav.experience'), href: `${home}#experience` },
-  { label: t('nav.education'), href: `${home}#education` },
-  { label: t('nav.about'), href: `${home}#about` },
-  { label: t('nav.contact'), href: `${home}#contact` },
+  { label: t('nav.projects'), href: routePath(lang, 'projects') },
+  { label: t('nav.tech'), href: routePath(lang, 'tech') },
+  { label: t('nav.blog'), href: routePath(lang, 'blog') },
+  { label: t('nav.about'), href: routePath(lang, 'about') },
 ];
 ---
 
@@ -31,16 +29,21 @@ const navItems: Array<{ label: string; href: string }> = [
 </a>
 <header class="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-bg)]/85 backdrop-blur">
   <nav aria-label="Navegación principal" class="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-6 py-4">
-    <ul class="flex flex-wrap gap-x-5 gap-y-1 font-mono text-sm text-[var(--color-text-muted)]">
-      {navItems.map(({ label, href }) => (
-        <li>
-          <a href={href} class="transition-colors hover:text-[var(--color-accent)]">{label}</a>
-        </li>
-      ))}
-    </ul>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      <a href={routePath(lang, 'home')} class="font-mono text-sm font-bold text-[var(--color-accent)]" aria-label={t('hero.name')}>
+        JJV
+      </a>
+      <ul class="flex flex-wrap gap-x-5 gap-y-1 font-mono text-sm text-[var(--color-text-muted)]">
+        {navItems.map(({ label, href }) => (
+          <li>
+            <a href={href} class="transition-colors hover:text-[var(--color-accent)]">{label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
     <div class="flex items-center gap-2">
       <a
-        href={getRelativeLocaleUrl(otherLang, '/')}
+        href={routePath(otherLang, route)}
         hreflang={otherLang}
         rel="alternate"
         class="rounded border border-[var(--color-border)] px-3 py-1 font-mono text-sm text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"

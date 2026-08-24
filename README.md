@@ -34,6 +34,22 @@ portfolio/
 └── README.md
 ```
 
+## Mapa del sitio
+
+Rutas en español (por defecto, sin prefijo) / inglés (`/en`). El slug está traducido en cada idioma; la tabla completa vive en [`src/i18n/routes.ts`](./src/i18n/routes.ts), fuente única de verdad para `canonical`/`hreflang`/navegación.
+
+| Página                | ES                       | EN                          |
+| :--------------------- | :------------------------ | :---------------------------- |
+| Inicio                 | `/`                        | `/en/`                        |
+| Proyectos              | `/proyectos/`               | `/en/projects/`                 |
+| Tecnologías Revolucionarias | `/tecnologias-revolucionarias/` | `/en/revolutionary-tech/`    |
+| Blog                   | `/blog/`                    | `/en/blog/`                     |
+| Sobre mí (hub)          | `/sobre-mi/`                 | `/en/about/`                     |
+| — Habilidades           | `/sobre-mi/habilidades/`      | `/en/about/skills/`               |
+| — Experiencia           | `/sobre-mi/experiencia/`      | `/en/about/experience/`           |
+| — Educación             | `/sobre-mi/educacion/`        | `/en/about/education/`            |
+| — Contacto              | `/sobre-mi/contacto/`         | `/en/about/contact/`              |
+
 ## Desarrollo local
 
 Requiere Node.js 18.20.8+ / 20.3.0+ / 22.0.0+.

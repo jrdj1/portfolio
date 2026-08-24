@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import About from '../../components/sections/About.astro';
+import AboutNav from '../../components/sections/AboutNav.astro';
+import { useTranslations } from '../../i18n/utils';
+import { profile } from '../../content/profile';
+
+const lang = 'es';
+const t = useTranslations(lang);
+const { aboutBody } = profile[lang];
+---
+
+<Layout lang={lang} title={`${t('nav.about')} — ${t('site.title')}`} description={aboutBody} route="about">
+  <Header lang={lang} route="about" />
+  <main id="main">
+    <About lang={lang} />
+    <AboutNav lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

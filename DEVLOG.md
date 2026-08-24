@@ -155,6 +155,33 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - Sitemap y `canonical`/`hreflang` verificados para la nueva ruta `/blog` en ambos idiomas.
 - Revisado en el navegador: nuevo orden de secciones, nav con "Blog" y "Enfoque", página de blog en ES/EN, ancla `#about` con el nuevo título "Enfoque".
 
+## De single-page a sitio multi-página (2026-08-24)
+
+**Qué se hizo**
+- El sitio pasa de ser una única página larga (con secciones ancladas) a un sitio real de varias páginas:
+  - `/` — nueva landing: titular + 4 tarjetas de entrada (`EntryNav.astro`).
+  - `/proyectos` (`/en/projects`) — página propia, antes una sección más de la home.
+  - `/tecnologias-revolucionarias` (`/en/revolutionary-tech`) — placeholder nuevo, mismo patrón que Blog.
+  - `/blog` (`/en/blog`) — sin cambios de contenido, solo de infraestructura de rutas.
+  - `/sobre-mi` (`/en/about`) — hub: el bloque "Enfoque" (antes la sección "Sobre mí"/"About") + una sub-navegación (`AboutNav.astro`) a 4 páginas reales: `/sobre-mi/habilidades`, `/experiencia`, `/educacion`, `/contacto` (y sus equivalentes `/en/about/skills`, `/experience`, `/education`, `/contact`).
+- **`src/i18n/routes.ts`**: nueva tabla central `{ clave: { es, en } }` con la URL de cada página. Sustituye el uso ad-hoc de `getRelativeLocaleUrl` allí donde el slug no es igual en los dos idiomas (p. ej. `proyectos` vs `projects`) — sin esto, `canonical`/`hreflang`/nav/selector de idioma habrían apuntado a rutas equivocadas en cuanto un slug se tradujo.
+- `Layout.astro` pasa de un prop `path` (asumía la misma ruta en ambos idiomas) a un prop `route` (clave de `routes.ts`) para `canonical`/`hreflang`.
+- `Header.astro` recibe también `route`, para que el selector de idioma lleve a la página **equivalente** en el otro idioma (antes siempre volvía al inicio) — comprobado en `/en/about/skills` → cambia a `/sobre-mi/habilidades`, no a `/`.
+- Nav superior con 4 entradas (Proyectos, Tecnologías Revolucionarias, Blog, Sobre mí) + marca "JJV" enlazando al inicio (antes no había forma de "volver arriba" salvo scroll, porque todo era una sola página).
+
+**Decisiones tomadas con el usuario**
+- Proyectos es una entrada propia de primer nivel (no queda dentro de "Sobre mí"), manteniendo la filosofía "proyectos primero" del reenfoque anterior.
+- Las sub-secciones de "Sobre mí" (Habilidades, Experiencia, Educación, Contacto) son páginas reales con URL propia, no anclas dentro de una única página.
+- "Tecnologías Revolucionarias" se deja como placeholder — el contenido real (el recopilatorio del panorama tecnológico) se redacta en otra sesión.
+
+**Por qué**
+- Reutilización total de los componentes de sección ya existentes (`Projects`, `Skills`, `Experience`, `Education`, `Contact`, `About`) — cada página nueva es solo Layout + Header + Footer + el componente correspondiente; no hizo falta reescribir contenido, solo reubicarlo.
+- Centralizar las rutas en una tabla (`routes.ts`) es la respuesta concreta a la pregunta de "arquitectura escalable para idiomas" del turno anterior: añadir un idioma nuevo ahora significa añadir una columna en `ui.ts`, `profile.ts` **y** `routes.ts` — tres tablas, no código de rutas disperso por los componentes.
+
+**Verificación**
+- `npx astro check` (37 ficheros, 0 errores) y `npm run build` (18 páginas generadas, sitemap con las 18 URLs).
+- Navegado en el navegador: landing con las 4 tarjetas, hub "Sobre mí" con su sub-nav, página de Habilidades con el enlace "Volver a Sobre mí", selector de idioma desde una página profunda (`/en/about/skills` → `/sobre-mi/habilidades`), toggle de tema funcionando en una página nueva.
+
 ## Estado del proyecto
 
 Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.

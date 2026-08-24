@@ -3,28 +3,18 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Hero from '../../components/sections/Hero.astro';
-import About from '../../components/sections/About.astro';
-import Skills from '../../components/sections/Skills.astro';
-import Projects from '../../components/sections/Projects.astro';
-import Experience from '../../components/sections/Experience.astro';
-import Education from '../../components/sections/Education.astro';
-import Contact from '../../components/sections/Contact.astro';
+import EntryNav from '../../components/sections/EntryNav.astro';
 import { useTranslations } from '../../i18n/utils';
 
 const lang = 'en';
 const t = useTranslations(lang);
 ---
 
-<Layout lang={lang} title={t('site.title')} description={t('site.description')}>
-  <Header lang={lang} />
+<Layout lang={lang} title={t('site.title')} description={t('site.description')} route="home">
+  <Header lang={lang} route="home" />
   <main id="main">
     <Hero lang={lang} />
-    <Projects lang={lang} />
-    <Skills lang={lang} />
-    <Experience lang={lang} />
-    <Education lang={lang} />
-    <About lang={lang} />
-    <Contact lang={lang} />
+    <EntryNav lang={lang} />
   </main>
   <Footer lang={lang} />
 </Layout>
