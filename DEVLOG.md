@@ -138,4 +138,10 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 
 ## Estado del proyecto
 
-Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). Pendiente de acción del usuario: importar el repositorio en Vercel y, tras el primer deploy, actualizar la URL real en `astro.config.mjs` y `public/robots.txt` (ver README). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.
+Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.
+
+## Post-lanzamiento — dominio y flujo de ramas (2026-08-24)
+
+- **Desplegado en Vercel** desde `jrdj1/portfolio` (rama `main`). Dominio de producción: **[jorgejulianvicedo.vercel.app](https://jorgejulianvicedo.vercel.app)** (subdominio `.vercel.app` gratuito con el nombre del usuario, elegido desde Vercel → Settings → Domains; el dominio autogenerado por defecto llevaba un sufijo aleatorio porque `portfolio`/`portfolio-jrdj1` ya estaban en uso por otra cuenta).
+- `site` en `astro.config.mjs` y `Sitemap:` en `public/robots.txt` actualizados con la URL definitiva; afecta a `canonical`, Open Graph, JSON-LD y sitemap.
+- **Flujo de ramas a partir de ahora**: `main` es la rama de producción (deploy automático en Vercel en cada push); el desarrollo nuevo se hace en `devel` y se integra en `main` cuando esté listo para producción.

@@ -2,7 +2,7 @@
 
 Portfolio web personal de [Jorge Rafael de Julián Vicedo](https://github.com/jrdj1), estudiante de Ingeniería Informática (Universidad de Alicante) e Ingeniero de Software Júnior. Construido con [Astro](https://astro.build) y [Tailwind CSS](https://tailwindcss.com), en español e inglés.
 
-🔗 Demo en vivo: _pendiente de desplegar en Vercel (se añadirá el enlace en cuanto exista)_
+🔗 Demo en vivo: [jorgejulianvicedo.vercel.app](https://jorgejulianvicedo.vercel.app)
 
 ## Estrategia de desarrollo
 
@@ -53,11 +53,16 @@ npm run dev       # http://localhost:4321
 | `npm run astro check` | Comprueba tipos y errores de Astro/TypeScript          |
 | `npm run generate:og` | Regenera `public/og.png` (imagen de Open Graph)         |
 
+## Flujo de ramas
+
+- **`main`** — rama de producción. Cada push dispara un deploy automático en Vercel a [jorgejulianvicedo.vercel.app](https://jorgejulianvicedo.vercel.app).
+- **`devel`** — rama de desarrollo. Todo el trabajo nuevo se hace aquí (Vercel genera un deploy de preview automático por cada push) y se integra en `main` cuando esté listo para producción.
+
 ## Despliegue
 
-El sitio es 100% estático y compatible con el preset "Astro" de Vercel sin necesidad de adapter ni variables de entorno:
+El sitio es 100% estático y compatible con el preset "Astro" de Vercel sin necesidad de adapter ni variables de entorno. Ya está importado en Vercel desde `jrdj1/portfolio` (rama `main` = producción); para reproducirlo en otra cuenta:
 
-1. Importar el repositorio `jrdj1/portfolio` desde el dashboard de [Vercel](https://vercel.com/new).
+1. Importar el repositorio desde el dashboard de [Vercel](https://vercel.com/new).
 2. Framework preset: **Astro** (autodetectado).
 3. Build command / output directory: los que detecta Vercel por defecto (`npm run build` / `dist`).
 4. Deploy.
