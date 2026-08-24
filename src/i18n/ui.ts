@@ -52,8 +52,8 @@ export const ui = {
     'projects.noRepo': 'Repositorio no disponible públicamente todavía',
 
     'tech.heading': 'Tecnologías Revolucionarias',
-    'tech.comingSoon':
-      'Todavía no hay contenido — aquí irá un recopilatorio del panorama tecnológico actual: qué está cambiando de verdad en la informática y por qué importa.',
+    'tech.intro':
+      'Esto no es un informe del sector ni una lista exhaustiva: es una selección personal y parcial de lo que sigo de cerca ahora mismo, por qué me parece importante, y cómo se cruza (o no) con lo que construyo. Se actualiza de vez en cuando, sin calendario fijo.',
 
     'experience.heading': 'Experiencia y logros',
     'education.heading': 'Educación',
@@ -117,8 +117,8 @@ export const ui = {
     'projects.noRepo': 'Repository not publicly available yet',
 
     'tech.heading': 'Revolutionary Technologies',
-    'tech.comingSoon':
-      "No content yet — this is where a roundup of the current tech landscape will go: what's actually changing in computing right now, and why it matters.",
+    'tech.intro':
+      "This isn't an industry report or an exhaustive list: it's a personal, partial selection of what I'm following closely right now, why it seems worth it, and how it does (or doesn't) connect to what I build. Updated now and then, no fixed schedule.",
 
     'experience.heading': 'Experience & achievements',
     'education.heading': 'Education',

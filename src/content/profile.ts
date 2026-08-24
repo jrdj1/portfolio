@@ -32,6 +32,12 @@ export interface LanguageItem {
   level: string;
 }
 
+export interface TechEntry {
+  title: string;
+  category: string;
+  body: string;
+}
+
 export interface ProfileContent {
   location: string;
   aboutBody: string;
@@ -40,6 +46,7 @@ export interface ProfileContent {
   experience: TimelineItem[];
   education: EducationItem[];
   languages: LanguageItem[];
+  techRadar: TechEntry[];
 }
 
 export const profile: Record<Locale, ProfileContent> = {
@@ -115,6 +122,33 @@ export const profile: Record<Locale, ProfileContent> = {
       { name: 'Alemán', level: 'A2' },
       { name: 'Ruso', level: 'A1' },
     ],
+    techRadar: [
+      {
+        title: 'Agentes de IA para programar',
+        category: 'Herramientas de desarrollo',
+        body: 'Este mismo portfolio se ha construido junto a un agente de IA que lee y escribe código, ejecuta comandos y toma pequeñas decisiones de implementación. No es autocompletado: es delegar tareas completas y revisar el resultado. Lo que me interesa no es la novedad, sino cómo cambia el trabajo real — qué merece la pena delegar y qué no.',
+      },
+      {
+        title: 'WebGPU',
+        category: 'Gráficos y computación',
+        body: 'El sucesor de WebGL — acceso más directo a la GPU desde el navegador, pensado también para cómputo general, no solo gráficos. Después de construir Meteor Madness en WebGL para el NASA Space Apps Challenge, es el paso lógico a seguir de cerca: las mismas simulaciones, con mucho más margen de rendimiento.',
+      },
+      {
+        title: 'Streaming y arquitecturas basadas en eventos',
+        category: 'Sistemas distribuidos',
+        body: 'Apache Kafka sigue siendo el estándar de facto, y su evolución (KRaft, quitar la dependencia de ZooKeeper) simplifica montar sistemas en tiempo real con menos piezas móviles. Es la base de EasyCab2, y cada vez veo menos motivos para diseñar un sistema como una cadena de peticiones síncronas cuando puede ser un flujo de eventos.',
+      },
+      {
+        title: 'Herramientas de build reescritas en Rust',
+        category: 'Herramientas de desarrollo',
+        body: 'Vite, Turbopack, Bun — buena parte del ecosistema de JavaScript se está reescribiendo en Rust para ganar velocidad. Este mismo sitio usa Vite con Rolldown por debajo. No es un cambio visible para quien visita la web, pero sí para quien la desarrolla: los tiempos de build han dejado de ser una excusa para el café.',
+      },
+      {
+        title: 'Bases de datos vectoriales y RAG',
+        category: 'Datos y machine learning',
+        body: 'Buscar por significado en vez de por coincidencia exacta de texto — la pieza que hace útiles a los sistemas que combinan un modelo de lenguaje con datos propios. Viniendo de scikit-learn y de "fundamentos de ML", es el hueco natural que quiero explorar más a fondo: no el modelo en sí, sino cómo se le da memoria y contexto.',
+      },
+    ],
   },
   en: {
     location: 'Mutxamel, Alicante (Spain)',
@@ -185,6 +219,33 @@ export const profile: Record<Locale, ProfileContent> = {
       { name: 'English', level: 'B2' },
       { name: 'German', level: 'A2' },
       { name: 'Russian', level: 'A1' },
+    ],
+    techRadar: [
+      {
+        title: 'AI coding agents',
+        category: 'Developer tools',
+        body: "This very portfolio was built alongside an AI agent that reads and writes code, runs commands, and makes small implementation decisions. It's not autocomplete — it's delegating whole tasks and reviewing the result. What interests me isn't the novelty, it's how it actually changes the work: what's worth delegating and what isn't.",
+      },
+      {
+        title: 'WebGPU',
+        category: 'Graphics & compute',
+        body: "The successor to WebGL — more direct GPU access from the browser, built for general-purpose compute too, not just graphics. After building Meteor Madness in WebGL for the NASA Space Apps Challenge, it's the logical next thing to watch: the same kind of simulations, with a lot more performance headroom.",
+      },
+      {
+        title: 'Streaming and event-driven architectures',
+        category: 'Distributed systems',
+        body: "Apache Kafka is still the de facto standard, and its evolution (KRaft, dropping the ZooKeeper dependency) makes real-time systems easier to run with fewer moving parts. It's the backbone of EasyCab2, and I see fewer and fewer reasons to design a system as a chain of synchronous requests when it can be a stream of events.",
+      },
+      {
+        title: 'Build tools rewritten in Rust',
+        category: 'Developer tools',
+        body: "Vite, Turbopack, Bun — a good chunk of the JavaScript ecosystem is being rewritten in Rust for speed. This site itself runs on Vite with Rolldown underneath. It's not something a visitor notices, but it is for whoever's building it: build times have stopped being an excuse for a coffee break.",
+      },
+      {
+        title: 'Vector databases and RAG',
+        category: 'Data & machine learning',
+        body: "Searching by meaning instead of exact text match — the piece that makes systems combining a language model with your own data actually useful. Coming from scikit-learn and \"ML fundamentals\", it's the natural gap I want to explore further: not the model itself, but how it gets given memory and context.",
+      },
     ],
   },
 };

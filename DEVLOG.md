@@ -182,6 +182,20 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `npx astro check` (37 ficheros, 0 errores) y `npm run build` (18 páginas generadas, sitemap con las 18 URLs).
 - Navegado en el navegador: landing con las 4 tarjetas, hub "Sobre mí" con su sub-nav, página de Habilidades con el enlace "Volver a Sobre mí", selector de idioma desde una página profunda (`/en/about/skills` → `/sobre-mi/habilidades`), toggle de tema funcionando en una página nueva.
 
+## Contenido real de "Tecnologías Revolucionarias" (2026-08-24)
+
+**Qué se hizo**
+- `profile.ts` gana `techRadar: TechEntry[]` (título, categoría, cuerpo) con 5 entradas bilingües: agentes de IA para programar, WebGPU, streaming/arquitecturas basadas en eventos, herramientas de build reescritas en Rust, y bases de datos vectoriales/RAG.
+- Nuevo componente `TechRadar.astro` (timeline con marcador, mismo patrón visual que Experiencia/Educación) sustituye el placeholder "todavía no hay contenido" en `/tecnologias-revolucionarias` y `/en/revolutionary-tech`.
+
+**Por qué este enfoque de contenido**
+- Se descartó una lista genérica de "tendencias del sector" en favor de una selección personal explícitamente subjetiva y parcial (lo dice el propio texto de intro) — coherente con el tono de "Enfoque" y con la idea de portfolio-como-bitácora, no como informe corporativo.
+- Cada entrada se ancla, cuando es posible, en algo real del propio portfolio o de sus proyectos: WebGPU conecta con Meteor Madness (WebGL), streaming/eventos con EasyCab2 (Kafka), RAG/vectores con los fundamentos de ML (scikit-learn), y las herramientas de build en Rust con la propia stack de este sitio (Vite + Rolldown). La entrada sobre agentes de IA es, literalmente, cómo se ha construido este portfolio — un guiño honesto en vez de ocultarlo.
+
+**Verificación**
+- `npx astro check` (38 ficheros, 0 errores) y `npm run build` (18 páginas).
+- Revisado en el navegador en ES y EN: contenido correcto, un único `h1` por página y jerarquía `h2` por entrada.
+
 ## Estado del proyecto
 
 Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.
