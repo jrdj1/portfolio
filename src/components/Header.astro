@@ -37,13 +37,29 @@ const navItems: Array<[string, string]> = [
         </li>
       ))}
     </ul>
-    <a
-      href={getRelativeLocaleUrl(otherLang, '/')}
-      hreflang={otherLang}
-      rel="alternate"
-      class="rounded border border-[var(--color-border)] px-3 py-1 font-mono text-sm text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
-    >
-      {t('nav.langSwitch')}
-    </a>
+    <div class="flex items-center gap-2">
+      <a
+        href={getRelativeLocaleUrl(otherLang, '/')}
+        hreflang={otherLang}
+        rel="alternate"
+        class="rounded border border-[var(--color-border)] px-3 py-1 font-mono text-sm text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+      >
+        {t('nav.langSwitch')}
+      </a>
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label={t('nav.themeToggle')}
+        class="rounded border border-[var(--color-border)] p-1.5 text-[var(--color-text-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+      >
+        <svg class="icon-sun h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2.5v2M12 19.5v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2.5 12h2M19.5 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="icon-moon h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"></path>
+        </svg>
+      </button>
+    </div>
   </nav>
 </header>

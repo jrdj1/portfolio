@@ -33,6 +33,9 @@
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 
+  /* Tema oscuro (por defecto). El modo claro se define abajo y se activa
+     via [data-theme="light"] en <html> (ver Layout.astro para el script
+     que decide el tema inicial sin parpadeo y persiste la eleccion). */
   --color-bg: #05070d;
   --color-surface: #0d1220;
   --color-border: #1e2536;
@@ -40,6 +43,30 @@
   --color-text-muted: #8b93a7;
   --color-accent: #22d3ee;
   --color-accent-muted: #0e7490;
+}
+
+/* Modo claro: por preferencia del sistema si el usuario no ha elegido
+   explicitamente, o siempre que se fuerce con [data-theme]. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-bg: #f7f8fb;
+    --color-surface: #ffffff;
+    --color-border: #dde1ea;
+    --color-text: #10131a;
+    --color-text-muted: #55606f;
+    --color-accent: #0e7490;
+    --color-accent-muted: #0891b2;
+  }
+}
+
+:root[data-theme="light"] {
+  --color-bg: #f7f8fb;
+  --color-surface: #ffffff;
+  --color-border: #dde1ea;
+  --color-text: #10131a;
+  --color-text-muted: #55606f;
+  --color-accent: #0e7490;
+  --color-accent-muted: #0891b2;
 }
 
 @layer base {
@@ -51,6 +78,14 @@
   body {
     background-color: var(--color-bg);
     color: var(--color-text);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    body {
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+    }
   }
 
   h1,
@@ -83,4 +118,18 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Iconos del theme toggle: se muestra el icono del modo AL QUE se cambiaria
+   al pulsar (sol = "pasar a claro", luna = "pasar a oscuro"). */
+[data-theme-toggle] .icon-moon {
+  display: none;
+}
+
+:root[data-theme="light"] [data-theme-toggle] .icon-sun {
+  display: none;
+}
+
+:root[data-theme="light"] [data-theme-toggle] .icon-moon {
+  display: block;
 }

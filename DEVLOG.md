@@ -145,3 +145,19 @@ Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`]
 - **Desplegado en Vercel** desde `jrdj1/portfolio` (rama `main`). Dominio de producción: **[jorgejulianvicedo.vercel.app](https://jorgejulianvicedo.vercel.app)** (subdominio `.vercel.app` gratuito con el nombre del usuario, elegido desde Vercel → Settings → Domains; el dominio autogenerado por defecto llevaba un sufijo aleatorio porque `portfolio`/`portfolio-jrdj1` ya estaban en uso por otra cuenta).
 - `site` en `astro.config.mjs` y `Sitemap:` en `public/robots.txt` actualizados con la URL definitiva; afecta a `canonical`, Open Graph, JSON-LD y sitemap.
 - **Flujo de ramas a partir de ahora**: `main` es la rama de producción (deploy automático en Vercel en cada push); el desarrollo nuevo se hace en `devel` y se integra en `main` cuando esté listo para producción.
+
+## Modo claro (2026-08-24)
+
+**Qué se hizo**
+- Segunda paleta de color (`--color-bg`, `--color-surface`, `--color-border`, `--color-text`, `--color-text-muted`, `--color-accent`, `--color-accent-muted`) definida en `global.css`, activada por `:root[data-theme="light"]` o por `@media (prefers-color-scheme: light)` cuando el usuario no ha elegido explícitamente. Como todos los componentes ya usaban `var(--color-*)` en vez de clases de color de Tailwind fijas, no hizo falta tocar ningún componente aparte del `Header` (botón) — el resto se adapta solo.
+- Script `is:inline data-astro-rerun` al principio del `<head>` de `Layout.astro`: decide el tema antes del primer pintado (localStorage → si no hay, preferencia del sistema) para evitar parpadeo, y se re-ejecuta tras cada View Transition (`data-astro-rerun` es el mecanismo de Astro para eso).
+- Botón de toggle en `Header` (icono sol/luna en SVG inline, sin librería de iconos) — el click se gestiona por delegación de eventos en `document` desde `Layout.astro`, así que sigue funcionando sin volver a engancharse tras cada cambio de página.
+- Colores del modo claro elegidos y verificados con la misma fórmula de contraste WCAG 2.1 que en la Fase 6: acento `#0e7490` (cyan-700, más oscuro que el `#22d3ee` del tema oscuro para mantener 5:1+ de contraste sobre fondo claro).
+
+**Por qué**
+- `data-theme` en `<html>` + variables CSS en vez de clases `dark:`/`light:` de Tailwind por componente: con el sistema de tokens ya montado, cambiar de tema es cambiar el valor de la variable, no volver a escribir cada componente.
+- Delegación de eventos en vez de re-enganchar un listener por página: más simple y robusto frente a las View Transitions, que reemplazan el DOM del `Header` en cada navegación.
+
+**Verificación**
+- `npx astro check` y `npm run build`: sin errores.
+- En el navegador: tema inicial oscuro (sin preferencia guardada), toggle cambia colores/iconos e persiste en `localStorage`, se mantiene tras recargar y tras una View Transition (cambio de idioma).
