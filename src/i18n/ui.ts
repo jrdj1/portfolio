@@ -9,7 +9,7 @@ export const ui = {
     'site.description':
       'Proyectos académicos y profesionales de Jorge Julián Vicedo, Ingeniero de Software Júnior: sistemas distribuidos, aplicaciones full-stack y cómo se han construido.',
     'nav.projects': 'Proyectos',
-    'nav.tech': 'Tecnologías Revolucionarias',
+    'nav.tech': 'Tecnologías',
     'nav.blog': 'Blog',
     'nav.about': 'Sobre mí',
     'nav.langSwitch': 'English',
@@ -23,8 +23,8 @@ export const ui = {
 
     'entry.projects.title': 'Proyectos',
     'entry.projects.desc': 'Académicos y personales, terminados o en marcha.',
-    'entry.tech.title': 'Tecnologías Revolucionarias',
-    'entry.tech.desc': 'Un recopilatorio del panorama tecnológico actual.',
+    'entry.tech.title': 'Tecnologías',
+    'entry.tech.desc': 'El panorama tecnológico actual, dentro y fuera de la informática.',
     'entry.blog.title': 'Blog',
     'entry.blog.desc': 'Notas largas sobre cómo se construyen las cosas.',
     'entry.about.title': 'Sobre mí',
@@ -51,9 +51,11 @@ export const ui = {
     'projects.viewRepo': 'Ver repositorio',
     'projects.noRepo': 'Repositorio no disponible públicamente todavía',
 
-    'tech.heading': 'Tecnologías Revolucionarias',
+    'tech.heading': 'Tecnologías',
     'tech.intro':
-      'Esto no es un informe del sector ni una lista exhaustiva: es una selección personal y parcial de lo que sigo de cerca ahora mismo, por qué me parece importante, y cómo se cruza (o no) con lo que construyo. Se actualiza de vez en cuando, sin calendario fijo.',
+      'Un vistazo extendido al panorama tecnológico actual — no solo en informática, sino en general: energía, biotecnología, espacio, robótica, materiales. Más abajo hay un apartado específico dedicado a la informática.',
+    'tech.generalHeading': 'Panorama general',
+    'tech.computingHeading': 'Informática',
 
     'experience.heading': 'Experiencia y logros',
     'education.heading': 'Educación',
@@ -74,7 +76,7 @@ export const ui = {
     'site.description':
       'Academic and professional projects by Jorge Julián Vicedo, Junior Software Engineer: distributed systems, full-stack applications, and how they were built.',
     'nav.projects': 'Projects',
-    'nav.tech': 'Revolutionary Tech',
+    'nav.tech': 'Technology',
     'nav.blog': 'Blog',
     'nav.about': 'About',
     'nav.langSwitch': 'Español',
@@ -88,8 +90,8 @@ export const ui = {
 
     'entry.projects.title': 'Projects',
     'entry.projects.desc': 'Academic and personal, finished or in progress.',
-    'entry.tech.title': 'Revolutionary Tech',
-    'entry.tech.desc': 'A roundup of the current tech landscape.',
+    'entry.tech.title': 'Technology',
+    'entry.tech.desc': "Today's tech landscape, in computing and beyond.",
     'entry.blog.title': 'Blog',
     'entry.blog.desc': 'Longer notes on how things get built.',
     'entry.about.title': 'About',
@@ -116,9 +118,11 @@ export const ui = {
     'projects.viewRepo': 'View repository',
     'projects.noRepo': 'Repository not publicly available yet',
 
-    'tech.heading': 'Revolutionary Technologies',
+    'tech.heading': 'Technology',
     'tech.intro':
-      "This isn't an industry report or an exhaustive list: it's a personal, partial selection of what I'm following closely right now, why it seems worth it, and how it does (or doesn't) connect to what I build. Updated now and then, no fixed schedule.",
+      "An extended look at today's technology landscape — not just computing, but in general: energy, biotech, space, robotics, materials. There's a dedicated section on computing further down.",
+    'tech.generalHeading': 'General landscape',
+    'tech.computingHeading': 'Computing',
 
     'experience.heading': 'Experience & achievements',
     'education.heading': 'Education',

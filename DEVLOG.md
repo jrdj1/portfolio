@@ -196,6 +196,24 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `npx astro check` (38 ficheros, 0 errores) y `npm run build` (18 páginas).
 - Revisado en el navegador en ES y EN: contenido correcto, un único `h1` por página y jerarquía `h2` por entrada.
 
+## "Tecnologías Revolucionarias" → "Tecnologías": página independiente (2026-08-24)
+
+**Qué se hizo**
+- Renombrada de "Tecnologías Revolucionarias" a **"Tecnologías"** (nav, título, ruta): `/tecnologias-revolucionarias` → `/tecnologias`, `/en/revolutionary-tech` → `/en/technology` (actualizado en `routes.ts`, carpetas de página movidas).
+- Contenido reescrito por completo: ya no enlaza cada entrada con un proyecto propio (se quitaron las referencias a este portfolio, EasyCab2 y Meteor Madness) — ahora es una página independiente.
+- Alcance ampliado: `profile.ts` pasa de `techRadar: TechEntry[]` (una lista plana) a `techLandscape: { general: TechEntry[], computing: TechEntry[] }`, con dos apartados:
+  - **Panorama general** (6 entradas): IA generativa y agentes, energía (renovables/almacenamiento/fusión), biotecnología y medicina, espacio (lanzamiento reutilizable/megaconstelaciones), robótica y automatización, materiales y semiconductores — más allá de la informática.
+  - **Informática** (5 entradas, contenido de la Fase anterior pero reescrito sin atarlo a proyectos propios): agentes de IA para programar, WebGPU, streaming/eventos, herramientas de build en Rust, bases de datos vectoriales/RAG.
+- Componente `TechRadar.astro` sustituido por `TechLandscape.astro` (misma estética de timeline, ahora con dos bloques bajo sus propios `h2`).
+
+**Por qué**
+- El usuario pidió explícitamente que la página no hablara de sus propios proyectos — coherente con tratarla como una sección de contenido totalmente independiente del resto del portfolio, no como una prueba social más.
+- Separar "panorama general" de "informática" en dos bloques con sus propios encabezados, en vez de mezclarlo todo, dado que ahora cubre ámbitos muy distintos (energía, biotecnología, espacio...) y conviene que el lector pueda distinguir "tecnología en general" de "lo que toca directamente a la programación".
+
+**Verificación**
+- `npx astro check` (38 ficheros, 0 errores) y `npm run build` (18 páginas, `/tecnologias/` y `/en/technology/` incluidas).
+- Sitemap actualizado con las rutas nuevas; revisado en el navegador que el contenido no menciona ningún proyecto propio y que el selector de idioma sigue llevando a la página equivalente (`/en/technology/`).
+
 ## Estado del proyecto
 
 Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.

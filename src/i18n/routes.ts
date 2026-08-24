@@ -9,7 +9,7 @@ import type { Locale } from './ui';
 export const routes = {
   home: { es: '/', en: '/en/' },
   projects: { es: '/proyectos/', en: '/en/projects/' },
-  tech: { es: '/tecnologias-revolucionarias/', en: '/en/revolutionary-tech/' },
+  tech: { es: '/tecnologias/', en: '/en/technology/' },
   blog: { es: '/blog/', en: '/en/blog/' },
   about: { es: '/sobre-mi/', en: '/en/about/' },
   aboutSkills: { es: '/sobre-mi/habilidades/', en: '/en/about/skills/' },

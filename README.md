@@ -42,7 +42,7 @@ Rutas en español (por defecto, sin prefijo) / inglés (`/en`). El slug está tr
 | :--------------------- | :------------------------ | :---------------------------- |
 | Inicio                 | `/`                        | `/en/`                        |
 | Proyectos              | `/proyectos/`               | `/en/projects/`                 |
-| Tecnologías Revolucionarias | `/tecnologias-revolucionarias/` | `/en/revolutionary-tech/`    |
+| Tecnologías             | `/tecnologias/`              | `/en/technology/`                 |
 | Blog                   | `/blog/`                    | `/en/blog/`                     |
 | Sobre mí (hub)          | `/sobre-mi/`                 | `/en/about/`                     |
 | — Habilidades           | `/sobre-mi/habilidades/`      | `/en/about/skills/`               |

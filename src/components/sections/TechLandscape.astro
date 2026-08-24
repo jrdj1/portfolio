@@ -1,0 +1,42 @@
+---
+import type { Locale } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import { profile } from '../../content/profile';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { general, computing } = profile[lang].techLandscape;
+---
+
+<section aria-labelledby="tech-heading" class="px-6 py-16 sm:py-20">
+  <div class="mx-auto max-w-4xl" data-reveal>
+    <h1 id="tech-heading" class="text-3xl font-bold sm:text-4xl">{t('tech.heading')}</h1>
+    <p class="mt-4 max-w-2xl text-[var(--color-text-muted)]">{t('tech.intro')}</p>
+
+    <h2 class="mt-12 font-mono text-sm text-[var(--color-accent)]">{t('tech.generalHeading')}</h2>
+    <ul class="mt-4 space-y-8 border-l border-[var(--color-border)]">
+      {general.map((entry) => (
+        <li class="relative pl-6">
+          <span class="absolute top-1.5 -left-[5px] h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]"></span>
+          <h3 class="font-semibold">{entry.title}</h3>
+          <p class="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">{entry.body}</p>
+        </li>
+      ))}
+    </ul>
+
+    <h2 class="mt-14 font-mono text-sm text-[var(--color-accent)]">{t('tech.computingHeading')}</h2>
+    <ul class="mt-4 space-y-8 border-l border-[var(--color-border)]">
+      {computing.map((entry) => (
+        <li class="relative pl-6">
+          <span class="absolute top-1.5 -left-[5px] h-2.5 w-2.5 rounded-full bg-[var(--color-accent)]"></span>
+          <h3 class="font-semibold">{entry.title}</h3>
+          <p class="mt-2 max-w-2xl text-sm text-[var(--color-text-muted)]">{entry.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
