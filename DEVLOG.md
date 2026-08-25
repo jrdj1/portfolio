@@ -236,6 +236,23 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - Panel "Informática" de Tecnologías verificado en modo claro: fondo, borde y sombra correctos.
 - 4 iconos SVG de `EntryNav` confirmados en el DOM.
 
+## Bordes de tarjeta más marcados (2026-08-25)
+
+**Qué se hizo**
+- El primer intento de `--color-border-strong` no bastaba para que se distinguiera con claridad dónde empieza y termina cada tarjeta del índice (feedback directo tras revisar `EntryNav`/`AboutNav`/Proyectos/panel de Tecnologías).
+- Borde de `border` (1px) a `border-2` (2px) en todas las tarjetas/paneles interactivos.
+- `--color-border-strong` recalculado para pasar de ~1.5-1.7:1 de contraste a **3.4-3.7:1** contra el fondo de la propia tarjeta y contra el de la sección — el mínimo que recomienda WCAG 1.4.11 para límites de componentes de interfaz (no es texto, pero conviene que se perciba igualmente): oscuro `#2a3450` → `#56698f`; claro `#c2c9d6` → `#7885a0`.
+- Sombra (`--shadow-card`) ligeramente más presente en claro; separación entre tarjetas de `gap-4` a `gap-5`.
+- Hover de `EntryNav`/`AboutNav` pasa de `border-accent-muted` a `border-accent` directamente (más contraste también en el estado interactivo).
+
+**Por qué**
+- El contraste de *fondo* entre tarjeta y sección es deliberadamente sutil en esta paleta (es una elección de diseño, no un error) — así que la definición del borde tenía que cargar con todo el peso de marcar el límite, y el valor anterior no era lo bastante fuerte para eso.
+
+**Verificación**
+- `npx astro check` y `npm run build`: sin errores.
+- Contraste recalculado con la fórmula WCAG 2.1: 3.39-3.71:1 en las cuatro combinaciones borde/fondo relevantes (oscuro y claro, tarjeta y sección).
+- Confirmado en el navegador que `border-2` (2px) y el nuevo color se aplican, y que el toggle de tema los actualiza correctamente en ambas direcciones.
+
 ## Estado del proyecto
 
 Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.
