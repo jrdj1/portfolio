@@ -39,43 +39,34 @@
   --color-bg: #05070d;
   --color-surface: #0d1220;
   --color-border: #1e2536;
-  --color-border-strong: #56698f;
   --color-text: #e6e9f2;
   --color-text-muted: #8b93a7;
   --color-accent: #22d3ee;
   --color-accent-muted: #0e7490;
-  --shadow-card: none;
-  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 /* Modo claro: por preferencia del sistema si el usuario no ha elegido
    explicitamente, o siempre que se fuerce con [data-theme]. */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --color-bg: #eef1f6;
+    --color-bg: #f7f8fb;
     --color-surface: #ffffff;
     --color-border: #dde1ea;
-    --color-border-strong: #7885a0;
     --color-text: #10131a;
     --color-text-muted: #55606f;
     --color-accent: #0e7490;
     --color-accent-muted: #0891b2;
-    --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.08);
-    --shadow-card-hover: 0 8px 24px rgba(15, 23, 42, 0.14), 0 3px 8px rgba(15, 23, 42, 0.1);
   }
 }
 
 :root[data-theme="light"] {
-  --color-bg: #eef1f6;
+  --color-bg: #f7f8fb;
   --color-surface: #ffffff;
   --color-border: #dde1ea;
-  --color-border-strong: #7885a0;
   --color-text: #10131a;
   --color-text-muted: #55606f;
   --color-accent: #0e7490;
   --color-accent-muted: #0891b2;
-  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.08);
-  --shadow-card-hover: 0 8px 24px rgba(15, 23, 42, 0.14), 0 3px 8px rgba(15, 23, 42, 0.1);
 }
 
 @layer base {
@@ -145,12 +136,11 @@
 
 /*
  * Al cambiar --color-* en :root, los elementos con `transition-colors` /
- * `transition-all` (bordes, fondos, sombras basados en var(--color-*))
- * se quedan "congelados" con el valor del tema anterior en vez de
- * repintarse — un problema real de repintado al combinar transiciones
- * CSS con custom properties que cambian en un ancestro. Se evita
- * desactivando las transiciones un instante durante el propio cambio de
- * tema (ver el listener de [data-theme-toggle] en Layout.astro).
+ * `transition-all` se quedan "congelados" con el valor del tema anterior
+ * en vez de repintarse — un problema real de repintado al combinar
+ * transiciones CSS con custom properties que cambian en un ancestro. Se
+ * evita desactivando las transiciones un instante durante el propio
+ * cambio de tema (ver el listener de [data-theme-toggle] en Layout.astro).
  */
 .theme-switching,
 .theme-switching * {

@@ -13,11 +13,11 @@ const { lang, route = 'home' } = Astro.props;
 const t = useTranslations(lang);
 const otherLang: Locale = lang === 'es' ? 'en' : 'es';
 
-const navItems: Array<{ label: string; href: string }> = [
-  { label: t('nav.projects'), href: routePath(lang, 'projects') },
-  { label: t('nav.tech'), href: routePath(lang, 'tech') },
-  { label: t('nav.blog'), href: routePath(lang, 'blog') },
-  { label: t('nav.about'), href: routePath(lang, 'about') },
+const navItems: Array<{ label: string; href: string; key: RouteKey }> = [
+  { label: t('nav.projects'), href: routePath(lang, 'projects'), key: 'projects' },
+  { label: t('nav.tech'), href: routePath(lang, 'tech'), key: 'tech' },
+  { label: t('nav.blog'), href: routePath(lang, 'blog'), key: 'blog' },
+  { label: t('nav.about'), href: routePath(lang, 'about'), key: 'about' },
 ];
 ---
 
@@ -33,12 +33,25 @@ const navItems: Array<{ label: string; href: string }> = [
       <a href={routePath(lang, 'home')} class="font-mono text-sm font-bold text-[var(--color-accent)]" aria-label={t('hero.name')}>
         JJV
       </a>
-      <ul class="flex flex-wrap gap-x-5 gap-y-1 font-mono text-sm text-[var(--color-text-muted)]">
-        {navItems.map(({ label, href }) => (
-          <li>
-            <a href={href} class="transition-colors hover:text-[var(--color-accent)]">{label}</a>
-          </li>
-        ))}
+      <ul class="flex flex-wrap gap-2 font-mono text-sm">
+        {navItems.map(({ label, href, key }) => {
+          const isActive = key === 'about' ? route.startsWith('about') : route === key;
+          return (
+            <li>
+              <a
+                href={href}
+                aria-current={isActive ? 'page' : undefined}
+                class={`block rounded border px-3 py-1 transition-colors ${
+                  isActive
+                    ? 'border-[var(--color-accent)] text-[var(--color-accent)]'
+                    : 'border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-accent-muted)] hover:text-[var(--color-accent)]'
+                }`}
+              >
+                {label}
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </div>
     <div class="flex items-center gap-2">

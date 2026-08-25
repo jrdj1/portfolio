@@ -269,6 +269,21 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `npx astro check` y `npm run build`: sin errores.
 - Confirmado en el navegador (adjuntando el tab a un servidor ya en marcha, sin relanzar procesos): `body` en `#eef1f6`, tarjeta en `#ffffff` puro, borde en `#7885a0` — los tres valores nuevos correctos tras el toggle de tema.
 
+## Corrección: "el índice" era el menú de navegación, no las tarjetas (2026-08-25)
+
+**Qué se hizo**
+- Malentendido detectado con una captura del usuario: "el índice" del pedido original ("diferenciación más clara en la selección del índice") se refería al **menú de navegación del Header** (Proyectos / Tecnologías / Blog / Sobre mí), no a las tarjetas de `EntryNav`/`AboutNav`. Las tres rondas de trabajo sobre bordes/sombras/fondos de tarjetas de los apartados anteriores quedaban fuera de lo pedido — el usuario confirmó que las tarjetas "estaba bien antes".
+- **Revertido** a su estado previo (commit `b9dde6f`, antes de empezar el trabajo de "diferenciación"): `EntryNav.astro`, `AboutNav.astro`, `Projects.astro`, `TechLandscape.astro` y los tokens `--color-border-strong`/`--shadow-card`/`--shadow-card-hover` en `global.css` (incluyendo el cambio de `--color-bg` claro a `#eef1f6`). Se mantiene el fix real del bug de repintado del toggle (`.theme-switching`), que no tiene relación con el aspecto de las tarjetas.
+- **Arreglado lo que realmente se pedía**: cada entrada del menú (`Header.astro`) pasa de texto suelto separado por espacio a una píldora con borde propio (mismo lenguaje visual que ya usaban el selector de idioma y el toggle de tema, a su derecha) — así cada elemento del índice tiene un límite claro y visible en reposo, no solo al pasar el ratón.
+- Bonus aprovechando que `Header` ya recibía el `route` actual: la página en la que estás se marca con borde y texto en el color de acento (`aria-current="page"`), incluyendo las sub-páginas de "Sobre mí" (`route.startsWith('about')`).
+
+**Por qué**
+- Es un fallo de interpretación mío, no un cambio de opinión del usuario — "índice" en el pedido original apuntaba al menú/tabla de contenidos del sitio, la lectura más literal del término, y debí confirmarlo antes de iterar tres veces sobre las tarjetas.
+
+**Verificación**
+- `npx astro check` (38 ficheros, 0 errores) y `npm run build` (18 páginas).
+- Confirmado en el navegador: los 4 elementos del menú tienen borde visible en reposo; en `/proyectos/` "Proyectos" se marca activo (borde y texto en acento, `aria-current="page"`) y el resto en gris; en `/sobre-mi/habilidades/` se marca activo "Sobre mí".
+
 ## Estado del proyecto
 
 Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.
