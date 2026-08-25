@@ -214,6 +214,28 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - `npx astro check` (38 ficheros, 0 errores) y `npm run build` (18 páginas, `/tecnologias/` y `/en/technology/` incluidas).
 - Sitemap actualizado con las rutas nuevas; revisado en el navegador que el contenido no menciona ningún proyecto propio y que el selector de idioma sigue llevando a la página equivalente (`/en/technology/`).
 
+## Diferenciación visual: índice, secciones y modo claro (2026-08-25)
+
+**Qué se hizo**
+- **Índice (4 tarjetas de la home)**: cada entrada gana un icono SVG propio (capas para Proyectos, globo para Tecnologías, documento para Blog, persona para Sobre mí), y las tarjetas pasan a tener borde reforzado + sombra + elevación al hover (`hover:-translate-y-0.5`) en vez de depender solo del cambio de color de borde.
+- **Sub-índice de "Sobre mí"** (`AboutNav`): mismo tratamiento — iconos (flecha de código, maletín, birrete, sobre) + tarjetas reforzadas.
+- **Separación entre secciones**: `EntryNav` y `AboutNav` pasan a tener fondo `surface` a ancho completo (antes transparente), creando una franja diferenciada frente al bloque anterior (Hero / Enfoque). En Tecnologías, el bloque "Informática" se envuelve en un panel (`surface` + borde + sombra) para distinguirlo claramente de "Panorama general".
+- **Nuevos tokens de diseño**: `--color-border-strong` (borde más marcado para elementos interactivos/tarjetas) y `--shadow-card` / `--shadow-card-hover` (sombra sutil — inexistente en oscuro, visible en claro). En oscuro casi no cambian nada (el contraste ya funcionaba); en claro son los que hacen que una tarjeta se lea como superficie separada en vez de "flotar" sobre un fondo casi idéntico.
+
+**Bug encontrado y corregido: el toggle de tema no repintaba elementos con `transition-*`**
+- Durante la verificación se descubrió que, en cualquier elemento con una clase `transition-colors`/`transition-all` de Tailwind, el color/borde/sombra basado en `var(--color-*)` se quedaba "congelado" con el valor del tema anterior al cambiar `data-theme` — aunque la propia variable CSS sí se actualizaba (confirmado con `getComputedStyle().getPropertyValue()`). Esto afectaba a elementos ya existentes desde la Fase de modo claro (p. ej. el botón de idioma del Header), no solo a los componentes nuevos de hoy — pasó inadvertido porque las primeras verificaciones solo comprobaron `body`/`h1` (sin `transition-*`) y no elementos interactivos con transición.
+- **Fix**: al cambiar de tema, se añade una clase `.theme-switching` a `<html>` que desactiva todas las transiciones (`transition: none !important`) mientras se aplica el nuevo `data-theme`, forzando dos reflows (`void root.offsetHeight`) para asegurar que el navegador aplique cada paso antes de reactivar las transiciones 100 ms después. Es el patrón estándar para este tipo de problema de repintado con transiciones + custom properties.
+
+**Por qué**
+- Los tokens se separan del sistema de color base (`--color-border` sigue sirviendo para separadores finos entre bloques de texto) para no tener que subir el contraste de *todos* los bordes del sitio solo para reforzar los pocos que son realmente interactivos.
+- El "congelamiento" de color en el toggle era un bug real de repintado (verificado con 4 toggles consecutivos, en dos elementos distintos, con y sin el fix) — no una cuestión de gusto de diseño, así que se prioriza sobre el resto de cambios visuales de este turno.
+
+**Verificación**
+- `npx astro check` (38 ficheros, 0 errores) y `npm run build` (18 páginas).
+- 4 toggles de tema consecutivos verificados por `getComputedStyle` en el botón de idioma del Header y en una tarjeta de `EntryNav`: correctos en ambas direcciones tras el fix (antes, fallaban de forma intermitente).
+- Panel "Informática" de Tecnologías verificado en modo claro: fondo, borde y sombra correctos.
+- 4 iconos SVG de `EntryNav` confirmados en el DOM.
+
 ## Estado del proyecto
 
 Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.
