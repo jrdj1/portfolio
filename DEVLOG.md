@@ -253,6 +253,22 @@ Registro fase a fase del desarrollo progresivo de este portfolio. Cada entrada c
 - Contraste recalculado con la fórmula WCAG 2.1: 3.39-3.71:1 en las cuatro combinaciones borde/fondo relevantes (oscuro y claro, tarjeta y sección).
 - Confirmado en el navegador que `border-2` (2px) y el nuevo color se aplican, y que el toggle de tema los actualiza correctamente en ambas direcciones.
 
+## Fondo de página con gris perceptible en modo claro (2026-08-25)
+
+**Qué se hizo**
+- El usuario mandó una captura real (Brave, modo claro) mostrando que, pese al borde reforzado, las tarjetas del índice seguían sin distinguirse con claridad de dónde empiezan y terminan.
+- Causa raíz encontrada: `--color-bg` (`#f7f8fb`) y `--color-surface` (blanco puro) eran casi idénticos (contraste de luminancia ~1.06:1, imperceptible), así que la tarjeta dependía *solo* del borde para separarse del fondo — insuficiente incluso con el borde ya reforzado.
+- `--color-bg` en modo claro pasa de `#f7f8fb` a **`#eef1f6`** (gris azulado claramente perceptible junto a blanco puro), manteniendo `--color-surface: #ffffff` para las tarjetas. Mismo patrón que usan GitHub, Linear o Notion: página gris, tarjetas blancas.
+- `EntryNav`/`AboutNav`: las tarjetas pasan de `bg-[var(--color-bg)]` a `bg-[var(--color-surface)]` (antes casi no había diferencia con el fondo de página; ahora sí). Se quita el "banding" de fondo `surface` a nivel de sección (ya no aporta nada, la separación la da la tarjeta).
+- `Projects`/`TechLandscape` ya usaban `bg-surface` en sus tarjetas/panel — se benefician igual del nuevo contraste sin tocarlos.
+
+**Por qué**
+- El ratio de contraste WCAG entre dos tonos casi blancos da un número bajo (~1.1-1.2:1) *aunque* la diferencia sea perceptible al ojo — la fórmula está pensada para legibilidad de texto, no para "¿se nota esta región como distinta?". Confiar en ese número llevó a subestimar cuánta diferencia de fondo hacía falta en la primera pasada; la solución real era separar más los dos tonos, no solo reforzar el borde.
+
+**Verificación**
+- `npx astro check` y `npm run build`: sin errores.
+- Confirmado en el navegador (adjuntando el tab a un servidor ya en marcha, sin relanzar procesos): `body` en `#eef1f6`, tarjeta en `#ffffff` puro, borde en `#7885a0` — los tres valores nuevos correctos tras el toggle de tema.
+
 ## Estado del proyecto
 
 Las seis fases planificadas están completas y publicadas en [`jrdj1/portfolio`](https://github.com/jrdj1/portfolio). TODOs de contenido abiertos: enlaces de repositorio para SmartFest Data y BookHeaven cuando estén disponibles públicamente, y valorar un formulario de contacto si se quiere ampliar más allá de `mailto:`.

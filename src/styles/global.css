@@ -52,7 +52,7 @@
    explicitamente, o siempre que se fuerce con [data-theme]. */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme="dark"]) {
-    --color-bg: #f7f8fb;
+    --color-bg: #eef1f6;
     --color-surface: #ffffff;
     --color-border: #dde1ea;
     --color-border-strong: #7885a0;
@@ -66,7 +66,7 @@
 }
 
 :root[data-theme="light"] {
-  --color-bg: #f7f8fb;
+  --color-bg: #eef1f6;
   --color-surface: #ffffff;
   --color-border: #dde1ea;
   --color-border-strong: #7885a0;
